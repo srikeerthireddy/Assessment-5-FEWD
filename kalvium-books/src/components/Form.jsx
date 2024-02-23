@@ -1,16 +1,22 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+// Importing modules from React library.
+// Importing the useForm hook from the react-hook-form library for form management.
 import {useForm} from "react-hook-form";
 import './Form.css';
 import { NavLink } from "react-router-dom";
+// Define the functional component Form
+
 const Form=()=>{
+    // Destructuring useForm hook to extract necessary functions and state
     const {register,handleSubmit,formState:{errors,isSubmitSuccessful,isSubmitting},watch}=useForm();
+    // Function to handle form submission
     const onSubmit=async(data)=>{
         await new Promise ((resolve)=>setTimeout(resolve,2000));
         console.log(data);
     }
 
-
+    // Return JSX representing the component's UI
     return(
         <>
         <div className="header-container">

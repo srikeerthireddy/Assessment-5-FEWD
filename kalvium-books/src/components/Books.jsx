@@ -1,13 +1,17 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
+// Importing modules from React library.
+// importing NavLink componentfrom react-router-dom for navigation.
 import { NavLink } from "react-router-dom";
+// Importing axios library for making HTTP requests.
 import axios from 'axios';
 import "./Books.css";
-
+// Define the functional componet BookApp.
 const BooksApp = () => {
-    const [bookData, setBookData] = useState([]);
-    const [searchInput, setSearchInput] = useState("");
-
+    // State variables useState hook
+    const [bookData, setBookData] = useState([]);//State to hold the book data
+    const [searchInput, setSearchInput] = useState("");//State to hold search input
+    // Function to fetch data from the API
     const getData = () => {
         axios.get("https://reactnd-books-api.udacity.com/books", {
             headers: { 'Authorization': 'whatever-you-want' },
@@ -22,10 +26,12 @@ const BooksApp = () => {
             console.log("Error fetching data:", err);
         });
     };
-
+    // useEffect hook to fetch data when component mounts.
     useEffect(() => {
         getData();
     }, []);
+
+    //Filtered books based on search input
     const filteredBooks=bookData.filter((book)=>{
         if(!searchInput){
             return true;
@@ -36,7 +42,7 @@ const BooksApp = () => {
     const handleSearch=(e)=>{
         setSearchInput(e.target.value);
     }
-
+    // Return JSX representing the component's UI
     return (
         <div>
             <div className='container'>
